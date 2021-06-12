@@ -33,8 +33,9 @@ public class UserDAO {
                 int id = resultSet.getInt("id");
                 String username = resultSet.getString("username");
                 String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
 
-                users.add(new User(id, username, email));
+                users.add(new User(id, username, email, country));
             }
         } catch (SQLException e) {
             e.printStackTrace();

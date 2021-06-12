@@ -4,6 +4,7 @@ public class User {
     private int id;
     private String username;
     private String email;
+    private String country;
 
     public int getId() {
         return id;
@@ -29,9 +30,18 @@ public class User {
         this.email = email;
     }
 
-    public User(int id, String username, String email) {
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public User(int id, String username, String email, String country) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.country = country;
     }
 }

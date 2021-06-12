@@ -32,6 +32,7 @@
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Country</th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                     <td><c:out value="${user.id}"/></td>
                     <td><c:out value="${user.username}"/></td>
                     <td><c:out value="${user.email}"/></td>
+                    <td><c:out value="${user.country}"/></td>
                     <td>
                         <a href="edit?id=<c:out value="${user.id}"/>">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;

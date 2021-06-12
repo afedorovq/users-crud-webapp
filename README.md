@@ -1,4 +1,5 @@
-# Users Management System. Java EE CRUD Web Application.
+# Java EE CRUD Web Application
+Users Management System.
 ## Technologies
 * Java 8
 * Apache Tomcat

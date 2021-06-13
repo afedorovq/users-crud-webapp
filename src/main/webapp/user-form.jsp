@@ -12,7 +12,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #1585ed">
         <ul class="navbar-nav">
-            <li><a class="nav-link" href="<%=request.getContextPath()%>">Users Management System</a></li>
+            <li><a class="nav-link" href="/">Users Management System</a></li>
         </ul>
     </nav>
 </header>
@@ -20,10 +20,25 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-            <form action="insert" method="post">
+            <c:if test="${user == null}">
+                <form action="insert" method="post">
+            </c:if>
+            <c:if test="${user != null}">
+                <form action="update" method="post">
+            </c:if>
                 <caption>
-                    <h2 class="text-center">Add User</h2>
+                    <h2 class="text-center">
+                        <c:if test="${user == null}">
+                            Add User
+                        </c:if>
+                        <c:if test="${user != null}">
+                            Edit User
+                        </c:if>
+                    </h2>
                 </caption>
+                <c:if test="${user != null}">
+                    <input type="hidden" name="id" value="<c:out value="${user.id}"/>">
+                </c:if>
                 <fieldset class="form-group">
                     <label>Username</label>
                     <input type="text" value="<c:out value="${user.username}"/>" class="form-control" name="username"/>
@@ -36,7 +51,14 @@
                     <label>Country</label>
                     <input type="text" value="<c:out value="${user.country}"/>" class="form-control" name="country"/>
                 </fieldset>
-                <button type="submit" class="btn btn-success">Add User</button>
+                <button type="submit" class="btn btn-success">
+                    <c:if test="${user == null}">
+                        Add User
+                    </c:if>
+                    <c:if test="${user != null}">
+                        Save changes
+                    </c:if>
+                </button>
             </form>
         </div>
     </div>

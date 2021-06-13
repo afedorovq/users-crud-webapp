@@ -25,6 +25,10 @@ public class MainServlet extends HttpServlet {
             showNewForm(request, response);
         } else if (path.equalsIgnoreCase("/insert")) {
             insertUser(request, response);
+        } else if (path.equalsIgnoreCase("/edit")) {
+            showEditForm(request, response);
+        } else if (path.equalsIgnoreCase("/update")) {
+            updateUser(request, response);
         } else {
             showUsers(request, response);
         }
@@ -52,5 +56,23 @@ public class MainServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("user-form.jsp").forward(request, response);
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        User user = userDAO.selectUser(id);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("user-form.jsp").forward(request, response);
+    }
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+
+        User user = new User(id, username, email, country);
+        userDAO.updateUser(user);
+        response.sendRedirect("/");
     }
 }

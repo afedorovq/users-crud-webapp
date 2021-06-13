@@ -13,7 +13,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #1585ed">
         <ul class="navbar-nav">
-            <li><a class="nav-link" href="<%=request.getContextPath()%>">Users Management System</a></li>
+            <li><a class="nav-link" href="/">Users Management System</a></li>
         </ul>
     </nav>
 </header>

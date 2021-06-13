@@ -12,6 +12,7 @@ public class UserDAO {
     private final String PASSWORD = "root";
 
     private final String SELECT_ALL_USERS = "select * from users;";
+    private final String INSERT_USER = "insert into users(username, email, country) values (?, ?, ?);";
 
     public Connection getConnection() {
         Connection connection = null;
@@ -41,5 +42,17 @@ public class UserDAO {
             e.printStackTrace();
         }
         return users;
+    }
+
+    public void insertUser(User user) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

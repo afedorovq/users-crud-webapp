@@ -15,6 +15,7 @@ public class UserDAO {
     private final String INSERT_USER = "insert into users(username, email, country) values (?, ?, ?);";
     private final String SELECT_USER_BY_ID = "select * from users where id = ?;";
     private final String UPDATE_USER = "update users set username = ?, email = ?, country = ? where id = ?;";
+    private final String DELETE_USER = "delete from users where id = ?;";
 
     public Connection getConnection() {
         Connection connection = null;
@@ -92,5 +93,17 @@ public class UserDAO {
             e.printStackTrace();
         }
         return isUpdated;
+    }
+
+    public boolean deleteUser(int id) {
+        boolean isDeleted = false;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
+            isDeleted = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isDeleted;
     }
 }

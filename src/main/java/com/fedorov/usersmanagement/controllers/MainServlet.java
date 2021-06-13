@@ -29,6 +29,8 @@ public class MainServlet extends HttpServlet {
             showEditForm(request, response);
         } else if (path.equalsIgnoreCase("/update")) {
             updateUser(request, response);
+        } else if (path.equalsIgnoreCase("/delete")) {
+            deleteUser(request, response);
         } else {
             showUsers(request, response);
         }
@@ -73,6 +75,12 @@ public class MainServlet extends HttpServlet {
 
         User user = new User(id, username, email, country);
         userDAO.updateUser(user);
+        response.sendRedirect("/");
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDAO.deleteUser(id);
         response.sendRedirect("/");
     }
 }
